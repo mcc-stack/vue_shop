@@ -1,0 +1,12 @@
+@url = http://127.0.0.1:8888/api/private/v1
+@type = Content-Type: application/json
+
+###用户登录的接口
+
+POST {{url}}/login HTTP/1.1
+{{type}}
+
+{
+ "username":"admin",
+ "password":"123456"
+}
