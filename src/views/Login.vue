@@ -49,7 +49,7 @@ export default {
         // 验证用户名是否合法
         username: [
           { required: true, message: '请输入登录名称', trigger: 'blur' },
-          { min: 3, max: 10, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+          { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
         ],
         // 验证密码是否合法
         password: [
@@ -67,7 +67,11 @@ export default {
         if (!valid) return
         const { data: res } = await this.$http.post('login', this.loginForm)
         if (res.meta.status != 200) return this.$msg.error('登录失败! ')
-        this.$msg.success('登录成功!')
+        this.$msg({
+          message: '登录成功!',
+          type: 'success',
+          duration: 800
+        })
         /**
          * 1. 将登录成功之后的token, 保存到客户端的 sessionStorage 中
          *   1.1 项目中除了登录之外的其他API接口,必须在登陆之后才能访问
@@ -106,17 +110,17 @@ export default {
     position: absolute;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 130px;
-    width: 130px;
+    height: 128px;
+    width: 128px;
     border: 1px solid #eee;
     border-radius: 50%;
     box-shadow: 0 0 10px #ddd;
 
     img {
-      width: 100%;
-      height: 100%;
       border-radius: 50%;
       background: #eee;
+      width: 100%;
+      height: 100%;
     }
   }
 }

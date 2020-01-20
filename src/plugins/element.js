@@ -1,5 +1,31 @@
 import Vue from 'vue'
-import { Button,Form,FormItem,Input,Message,Header,Container,Aside,Main,Menu,Submenu,MenuItemGroup,MenuItem  } from 'element-ui'
+import { Button,
+  Form,
+  FormItem,
+  Input,
+  Message,
+  Header,
+  Container,
+  Aside,
+  Main,
+  Menu,
+  Submenu,
+  MenuItemGroup,
+  MenuItem,
+  Divider,
+  Breadcrumb,
+  BreadcrumbItem,
+  Card,
+  Row,
+  Col,
+  Table,
+  TableColumn,
+  Switch,
+  Tooltip,
+  Pagination,
+  Dialog,
+  MessageBox
+} from 'element-ui'
 
 Vue.use(Button)
 Vue.use(Form)
@@ -13,5 +39,18 @@ Vue.use(Menu)
 Vue.use(Submenu)
 Vue.use(MenuItemGroup)
 Vue.use(MenuItem)
-
+Vue.use(Divider)
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
+Vue.use(Card)
+Vue.use(Row)
+Vue.use(Col)
+Vue.use(Table)
+Vue.use(TableColumn)
+Vue.use(Switch)
+Vue.use(Tooltip)
+Vue.use(Pagination)
+Vue.use(Dialog)
+//为Vue原型挂载对象
 Vue.prototype.$msg = Message
+Vue.prototype.$confirm = MessageBox.confirm

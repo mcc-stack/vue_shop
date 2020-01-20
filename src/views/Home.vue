@@ -13,13 +13,22 @@
     <!-- 页面主体区域 -->
     <el-container>
       <!-- 侧边栏 -->
-      <el-aside classwidth="200px">
+      <el-aside :width="isCollapse ? '64px' : '200px'">
+        <div
+          :class="isCollapse ? 'toggle-button rotate': 'toggle-button'"
+          @click="toggleCollapse"
+        >|||</div>
+        <el-divider />
         <!-- 侧边栏菜单区域 -->
         <el-menu
           background-color="#fff"
           text-color="#2C3E50"
           active-text-color="#52BF8E"
           unique-opened
+          :collapse="isCollapse"
+          :collapse-transition="false"
+          router
+          :default-active="activePath"
         >
           <!-- 一级菜单 -->
           <el-submenu :index="item.id + ''" v-for="item in menuList" :key="item.id">
@@ -32,9 +41,10 @@
             </div>
             <!-- 二级菜单 -->
             <el-menu-item
-              :index="subItem.id + ''"
+              :index="'/'+subItem.path"
               v-for="subItem in item.children"
               :key="subItem.id"
+              @click="saveNavState('/'+ subItem.path)"
             >
               <div slot="title">
                 <!-- 图标 -->
@@ -47,7 +57,10 @@
         </el-menu>
       </el-aside>
       <!-- 右侧内容主体 -->
-      <el-main>content</el-main>
+      <el-main>
+        <!-- 路由占位符 -->
+        <router-view></router-view>
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -55,7 +68,7 @@
 <script>
 export default {
   data() {
-    //左侧菜单数据
+    // 左侧菜单数据
     return {
       menuList: [],
       iconObj: {
@@ -64,11 +77,16 @@ export default {
         '101': 'iconfont icon-shangpin',
         '102': 'iconfont icon-danju',
         '145': 'iconfont icon-baobiao'
-      }
+      },
+      // 是否折叠
+      isCollapse: false,
+      // 被激活的链接地址
+      activePath: ''
     }
   },
   created() {
     this.getMenuList()
+    this.activePath = window.sessionStorage.getItem('activePath')
   },
   methods: {
     logout() {
@@ -88,7 +106,15 @@ export default {
       */
       // console.log(res)
       this.menuList = res.data
-      console.log(res.data)
+    },
+    //点击按钮
+    toggleCollapse() {
+      this.isCollapse = !this.isCollapse
+    },
+    //保存链接的激活状态
+    saveNavState(activePath) {
+      window.sessionStorage.setItem('activePath', activePath)
+      this.activePath = activePath
     }
   }
 }
@@ -99,7 +125,7 @@ export default {
   height: 100%;
 }
 .el-header {
-  background-color: #bbe6d2;
+  background-color: #bbe6cb;
   display: flex;
   justify-content: space-between;
   padding-left: 0;
@@ -113,26 +139,35 @@ export default {
   span {
     margin-left: 15px;
   }
-}
-.wrapper {
-  border-radius: 50%;
-  box-shadow: 0 0 5px #fff;
-  width: 58px;
-  height: 58px;
-  > img {
-    width: 48px;
-    height: 48px;
-    padding-left: 5px;
-    padding-top: 9px;
+  .wrapper {
+    border-radius: 50%;
+    box-shadow: 0 0 5px #fff;
+    width: 58px;
+    height: 58px;
+    > img {
+      width: 48px;
+      height: 48px;
+      padding-left: 5px;
+      padding-top: 9px;
+    }
   }
 }
+
 .el-aside {
   background: #fff;
-  .el-menu {
-    border-right: none;
-    .iconfont {
-      margin-right: 10px;
-    }
+  .toggle-button {
+    font-size: 10px;
+    text-align: center;
+    letter-spacing: 0.3em;
+    height: 36px;
+    line-height: 36px;
+    cursor: pointer;
+  }
+  .rotate {
+    transform: rotate(90deg);
+  }
+  .iconfont {
+    margin-right: 10px;
   }
 }
 .el-main {
