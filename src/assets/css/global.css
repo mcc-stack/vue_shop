@@ -4,6 +4,8 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
+  min-width: 1050px;
+  min-height: 380px;
 }
 
 .el-divider {
@@ -41,11 +43,11 @@ body,
 }
 
 .el-button--primary {
-  background-color: #38903e;
-  border: #38903e;
+  background-color: #67C23A !important;
+  border: #67C23A;
 }
 
 .el-button--primary:hover {
-  background-color: #38903e;
-  border: #38903e;
+  background-color: #67C23A;
+  border: #67C23A
 }
