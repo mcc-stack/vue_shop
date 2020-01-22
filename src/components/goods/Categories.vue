@@ -75,7 +75,7 @@
     <el-dialog
       title="添加商品分类"
       :visible.sync="addCateDialogVisible"
-      width="50%"
+      width="30%"
       @close="addCateDialogClosed"
     >
       <!-- 添加分类的表单 -->
@@ -94,8 +94,6 @@
           <!-- v-model绑定的必须是数组 -->
           <el-cascader
             clearable
-            collapse-tags
-            expand-trigger="hover"
             :options="parentCateList"
             :props="cascaderProps"
             v-model="selectedKeys"
@@ -115,16 +113,11 @@
     <el-dialog
       title="修改分类名称"
       :visible.sync="editCateDialogVisible"
-      width="50%"
+      width="30%"
       @close="editCateDialogClosed"
     >
       <!-- 添加分类的表单 -->
-      <el-form
-        :model="editCateForm"
-        :rules="addCateFormRules"
-        ref="editCateFormRef"
-        label-width="100px"
-      >
+      <el-form :model="editCateForm" :rules="addCateFormRules" ref="editCateFormRef">
         <el-form-item label="分类名称:" prop="cat_name">
           <el-input v-model="editCateForm.cat_name"></el-input>
         </el-form-item>
@@ -205,7 +198,8 @@ export default {
         value: 'cat_id',
         label: 'cat_name',
         children: 'children',
-        checkStrictly: true
+        checkStrictly: true,
+        expandTrigger: 'hover'
       },
       // 选中的父级分类的Id数组
       selectedKeys: [],
@@ -375,5 +369,8 @@ export default {
 <style lang="less" scoped>
 .tree-table {
   margin-top: 15px;
+}
+.el-cascader {
+  width: 100%;
 }
 </style>
