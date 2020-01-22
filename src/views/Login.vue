@@ -6,13 +6,7 @@
         <img src="../assets/logo.png" />
       </div>
       <!-- 登录表单区域 -->
-      <el-form
-        ref="loginRef"
-        :model="loginForm"
-        :rules="loginRules"
-        label-width="80px"
-        class="login_form"
-      >
+      <el-form ref="loginRef" :model="loginForm" :rules="loginRules" class="login_form">
         <!-- 用户名 校验规则:username-->
         <el-form-item prop="username">
           <el-input v-model="loginForm.username" prefix-icon="iconfont icon-user"></el-input>

@@ -77,7 +77,7 @@
           </template>
         </el-table-column>
         <!-- 索引列 -->
-        <el-table-column type="index"></el-table-column>
+        <el-table-column label="#" type="index"></el-table-column>
         <el-table-column label="角色名称" prop="roleName"></el-table-column>
         <el-table-column label="角色描述" prop="roleDesc"></el-table-column>
         <el-table-column label="操作" width="300px">
@@ -293,7 +293,7 @@ export default {
     async removeRoleById(role) {
       // 弹框提示,是否要删除
       const confirmResult = await this.$confirm(
-        '此操作将删除该用户, 是否继续?',
+        '此操作将删除该角色, 是否继续?',
         '提示',
         {
           confirmButtonText: '确定',
@@ -321,7 +321,7 @@ export default {
     async removeRightById(role, rightId) {
       // 弹框提示,是否要删除
       const confirmResult = await this.$confirm(
-        '此操作将删除该用户, 是否继续?',
+        '此操作将删除该权限, 是否继续?',
         '提示',
         {
           confirmButtonText: '确定',
