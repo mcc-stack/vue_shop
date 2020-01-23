@@ -57,5 +57,13 @@ body,
 }
 
 .zk-table--row-hover {
-  background-color: rgba(155, 230, 141, 0.1)  !important;
+  background-color: rgba(155, 230, 141, 0.1) !important;
+}
+
+.ql-editor {
+  min-height: 300px;
+}
+
+.btnAdd {
+  margin-top: 15px;
 }

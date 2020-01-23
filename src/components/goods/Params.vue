@@ -13,7 +13,7 @@
       <!-- 选择商品分类区域 -->
       <el-row style="margin:15px 0">
         <el-col>
-          <span>选择商品分类:</span>
+          <span style="margin-right:5px">选择商品分类:</span>
           <!-- 选择商品分类的级联选择框 -->
           <el-cascader
             v-model="selectedCateKeys"
@@ -38,7 +38,7 @@
           <!-- 动态参数表格 -->
           <el-table :data="manyTableData" border stripe>
             <!-- 展开行 -->
-           <el-table-column type="expand">
+            <el-table-column type="expand">
               <template slot-scope="scope">
                 <!-- 循环渲染Tag标签 -->
                 <el-tag
@@ -153,13 +153,15 @@
         </el-tab-pane>
       </el-tabs>
     </el-card>
+
+    <!-- 添加参数的对话框 -->
     <el-dialog
       :title="'添加'+ titleText"
       :visible.sync="addDialogVisible"
       width="30%"
       @close="addDialogClosed"
     >
-      <!-- 添加参数的对话框 -->
+      <!-- 添加参数的表单 -->
       <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="80px">
         <el-form-item :label="titleText" prop="attr_name">
           <el-input v-model="addForm.attr_name"></el-input>
@@ -171,6 +173,7 @@
         <el-button type="success" @click="addParams">确 定</el-button>
       </span>
     </el-dialog>
+
     <!-- 修改参数的对话框 -->
     <el-dialog
       :title="'修改'+ titleText"
@@ -178,7 +181,7 @@
       width="30%"
       @close="editDialogClosed"
     >
-      <!-- 添加参数的对话框 -->
+      <!-- 添加参数的表单 -->
       <el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="80px">
         <el-form-item :label="titleText" prop="attr_name">
           <el-input v-model="editForm.attr_name"></el-input>
