@@ -37,13 +37,7 @@
         </el-table-column>
         <el-table-column label="操作" width="130px">
           <template slot-scope="scope">
-            <el-button size="mini" type="success" icon="el-icon-edit" @click></el-button>
-            <el-button
-              size="mini"
-              type="danger"
-              icon="el-icon-delete"
-              @click="removeById(scope.row.goods_id)"
-            ></el-button>
+            <el-button type="danger" icon="el-icon-delete" @click="removeById(scope.row.goods_id)"></el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -60,24 +54,6 @@
         background
       ></el-pagination>
     </el-card>
-    <!-- <el-dialog
-      title="修改商品名"
-      :visible.sync="editDialogVisible"
-      width="30%"
-      @close="editDialogClosed"
-    >-->
-    <!-- 修改商品名的表单 -->
-    <!-- <el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="80px">
-        <el-form-item :label="titleText" prop="attr_name">
-          <el-input v-model="editForm.attr_name"></el-input>
-        </el-form-item>
-      </el-form>
-
-      <span slot="footer">
-        <el-button @click="editDialogVisible = false">取 消</el-button>
-        <el-button type="success" @click="editGoods">确 定</el-button>
-      </span>
-    </el-dialog>-->
   </div>
 </template>
 
@@ -134,7 +110,7 @@ export default {
     // 根据Id删除当前的商品名
     async removeById(id) {
       const confirmResult = await this.$confirm(
-        '此操作将删除该商品名, 是否继续?',
+        '此操作将删除该商品, 是否继续?',
         '提示',
         {
           confirmButtonText: '确定',
