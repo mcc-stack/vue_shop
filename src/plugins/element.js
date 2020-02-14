@@ -1,5 +1,6 @@
 import Vue from 'vue'
-import { Button,
+import { 
+  Button,
   Form,
   FormItem,
   Input,

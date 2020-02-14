@@ -1,11 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import './plugins/element.js'
-// 导入iconfont字体图标
-import './assets/fonts/iconfont.css';
-// 导入全局样式
-import './assets/css/global.css'
+import './plugins/element.js'// 导入element-ui组件
+import './assets/fonts/iconfont.css';// 导入iconfont字体图标
+import './assets/css/global.css'// 导入全局样式
+import './theme/index.css'// 导入自定义主题
 import TreeTable from 'vue-table-with-tree-grid';
 
 // 导入富文本编辑器
@@ -16,6 +15,7 @@ import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 import 'quill/dist/quill.bubble.css';
 
+// 路由切换的进度条
 import Nprogress from 'nprogress';
 import 'nprogress/nprogress.css'
 
