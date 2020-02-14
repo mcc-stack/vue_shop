@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import './plugins/element.js'// 导入element-ui组件
-import './assets/fonts/iconfont.css';// 导入iconfont字体图标
+import './assets/fonts/iconfont.css'// 导入iconfont字体图标
 import './assets/css/global.css'// 导入全局样式
 import './theme/index.css'// 导入自定义主题
 import TreeTable from 'vue-table-with-tree-grid';
