@@ -1,58 +1,107 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Login from '../views/Login'
-import Home from '../views/Home';
-import Welcome from '../views/Welcome';
-import Users from '../components/users/Users';
-import Rights from '../components/power/Rights';
-import Roles from '../components/power/Roles';
-import Categories from '../components/goods/Categories';
-import Params from '../components/goods/Params';
-import GoodsList from '../components/goods/List';
-import Add from '../components/goods/Add';
-import Order from '../components/order/Order';
-import Report from '../components/report/Report';
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   { path: '/', redirect: '/login' },
-  { path: '/login', component: Login },
-  { 
-    path: '/home', component: Home,
-    redirect:'/welcome',
-    children:[
-      {path:'/welcome',component:Welcome},
-      {path:'/users',component:Users},
-      {path:'/rights',component:Rights},
-      {path:'/roles',component:Roles},
-      {path:'/categories',component:Categories},
-      {path:'/params',component:Params},
-      {path:'/goods',component:GoodsList},
-      {path:'/goods/add',component:Add},
-      {path:'/orders',component:Order},
-      {path:'/reports',component:Report}
+  {
+    path: '/login',
+    component: () =>
+      import(/* webpackChunkName: "login" */ '../views/Login.vue')
+  },
+  {
+    path: '/home',
+    component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
+    redirect: '/welcome',
+    children: [
+      {
+        path: '/welcome',
+        component: () =>
+          import(/* webpackChunkName: "welcom" */ '../views/Welcome.vue')
+      },
+      {
+        path: '/users',
+        component: () =>
+          import(
+            /* webpackChunkName: "users" */ '../components/users/Users.vue'
+          )
+      },
+      {
+        path: '/rights',
+        component: () =>
+          import(
+            /* webpackChunkName: "rights" */ '../components/power/Rights.vue'
+          )
+      },
+      {
+        path: '/roles',
+        component: () =>
+          import(
+            /* webpackChunkName: "roles" */ '../components/power/Roles.vue'
+          )
+      },
+      {
+        path: '/categories',
+        component: () =>
+          import(
+            /* webpackChunkName: "categories" */ '../components/goods/Categories.vue'
+          )
+      },
+      {
+        path: '/params',
+        component: () =>
+          import(
+            /* webpackChunkName: "params" */ '../components/goods/Params.vue'
+          )
+      },
+      {
+        path: '/goods',
+        component: () =>
+          import(/* webpackChunkName: "goods" */ '../components/goods/List.vue')
+      },
+      {
+        path: '/goods/add',
+        component: () =>
+          import(
+            /* webpackChunkName: "goods_add" */ '../components/goods/Add.vue'
+          )
+      },
+      {
+        path: '/orders',
+        component: () =>
+          import(
+            /* webpackChunkName: "orders" */ '../components/order/Order.vue'
+          )
+      },
+      {
+        path: '/reports',
+        component: () =>
+          import(
+            /* webpackChunkName: "reports" */ '../components/report/Report.vue'
+          )
+      }
     ]
-}
-]
+  }
+];
 
 const router = new VueRouter({
   routes
-})
+});
 
 //挂载路由导航守卫
-router.beforeEach((to,from,next) =>{
+router.beforeEach((to, from, next) => {
   // to 将要访问的路径
   // from 代表从哪个路径跳转而来
   // next 是一个函数,表示放行
   //  next() next('/login') 强制跳转
 
-  if(to.path === '/login') return next()
+  if (to.path === '/login') return next();
   // 获取token
-  if(!window.sessionStorage.getItem('token')){
-    return next('/login')
+  if (!window.sessionStorage.getItem('token')) {
+    return next('/login');
   }
-  next()
-})
+  next();
+});
 
-export default router
+export default router;
